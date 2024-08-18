@@ -1,11 +1,11 @@
 <script setup>
-import AppHeader from "@/components/AppHeader.vue";
+import Header from "@/components/header.vue";
 </script>
 
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header style="user-select: none"><AppHeader/></el-header>
+      <el-header style="user-select: none"><Header/></el-header>
       <el-main>
           <router-view></router-view>
       </el-main>
