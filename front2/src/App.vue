@@ -1,14 +1,16 @@
 <script setup>
-import Header from "@/components/header.vue";
+import AppHeader from "@/components/AppHeader.vue";
 </script>
 
 <template>
-    <el-container class="common-layout">
-      <el-header style="user-select: none;padding: 0"><Header/></el-header>
-      <el-main style="padding: unset">
+  <div class="common-layout">
+    <el-container>
+      <el-header style="user-select: none"><AppHeader/></el-header>
+      <el-main>
           <router-view></router-view>
       </el-main>
     </el-container>
+  </div>
 </template>
 
 <style scoped>

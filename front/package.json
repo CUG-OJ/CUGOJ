@@ -13,12 +13,13 @@
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/theme-one-dark": "^6.1.2",
     "@element-plus/icons-vue": "^2.3.1",
+    "@octokit/rest": "^21.0.2",
     "axios": "^1.7.4",
     "element-plus": "^2.8.0",
-    "marked": "^14.0.0",
     "vue": "^3.4.29",
     "vue-codemirror": "^6.1.1",
-    "vue-router": "^4.4.3"
+    "vue-router": "^4.4.3",
+    "vue3-markdown-it": "^1.0.10"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",

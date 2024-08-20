@@ -1,26 +1,20 @@
 <script setup>
-import { marked } from 'marked'
 let notes=[
   {
     title: '使用方法',
-    content: '正常注册使用即可'
+    content: '正常注册使用即可:heart:'
   },
-  {
-    title: '公告二',
-    content: '一些内容'
-  }
 ]
 const tableData = [
   {
-    //三三三三三三三三三三三三三三
     number: 1,
-    name: '张四',
+    name: '张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三张三',
     address: '18'
   },
   {
     number: 2,
     name: '李四',
-    address: '20'
+    address: '20000000000000'
   },
   {
     number: 3,
@@ -83,44 +77,40 @@ const tableData = [
     address: '44'
   },
   {
-    number: 15,
+    number: 1555555555555,
     name: '宋十七',
     address: '46'
   }
 ]
-
-let markdownText = `
-# 个人资料
-## 个人信息
-- 姓名：张三
-- 年龄：18
-- 性别：男
-`
+import Markdown from 'vue3-markdown-it';
 </script>
-
 <template>
-  <div class="common-layout2">
-    <el-container>
-      <el-main>
-          <el-card v-for="item in notes" style="max-width: 900px;margin-top:10px">
-            <template #header style="align-content: center;line-height: 1px">{{item.title}}</template>
-            {{item.content}}
-          </el-card>
-      </el-main>
-      <el-aside width="400px" style="margin-right:50px">
-<!--      解析markdown-->
-        <div>
-            <el-table :data="tableData" stripe border style="width: 100%"
-                      :cell-style="{'text-align':'center'}"
-                      :header-cell-style="{'color':'black','text-align':'center'}">
-              <el-table-column width="100px" prop="number" label="#"/>
-              <el-table-column width="200px" prop="name" label="用户"/>
-              <el-table-column width="100px" prop="address" label="Rating" />
-            </el-table>
-        </div>
-      </el-aside>
-    </el-container>
-  </div>
+  <el-container style="margin: 1.2%">
+    <el-main>
+      <el-card shadow="always" style="width: 100%;margin-top: -1%;background-color:#f4f4f5">
+        <template #header style="align-content: center;line-height: 1px">
+          公告
+        </template>
+        <Markdown :source="'置顶公告的样式'" />
+      </el-card>
+      <el-card shadow="hover" v-for="item in notes" style="width: 100%;margin-top:2%">
+        <template #header style="align-content: center;line-height: 1px">
+          {{item.title}}
+        </template>
+        <Markdown :source="item.content" />
+      </el-card>
+    </el-main>
+    <el-aside>
+      <el-table :data="tableData" stripe border
+                show-overflow-tooltip
+                :cell-style="{'text-align':'center'}"
+                :header-cell-style="{'color':'black','text-align':'center'}">
+        <el-table-column prop="number" label="#"/>
+        <el-table-column prop="name" label="用户"/>
+        <el-table-column prop="address" label="Rating" />
+      </el-table>
+    </el-aside>
+  </el-container>
 </template>
 
 <style scoped>

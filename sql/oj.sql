@@ -19,7 +19,7 @@ create table `class`(
 );
 CREATE TABLE `new` (
     news_id INTEGER(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,    # 新闻ID(唯一)
-    writer_name VARCHAR(48) NOT NULL,                            # 发布者名称
+writer_name VARCHAR(48) NOT NULL,                               # 发布者名称
     post_time DATETIME NOT NULL,                                # 发布时间
     title VARCHAR(255) NOT NULL,                                # 标题
     content MEDIUMTEXT NOT NULL,                                # 内容

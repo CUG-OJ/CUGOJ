@@ -237,7 +237,6 @@ func test() {
 		fmt.Println("Error getting network interfaces:", err)
 		return
 	}
-
 	// 遍历每个接口
 	for _, i := range interfaces {
 		// 获取接口的所有地址

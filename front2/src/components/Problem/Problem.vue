@@ -24,7 +24,7 @@ const tableData = [
 </script>
 
 <template>
-  <el-row>
+  <span style="display: flex; justify-content: flex-end;">
   <el-text style="font-size: x-large">问题列表</el-text>
   <span style="flex-grow: 1;" />
   <el-dropdown>
@@ -50,7 +50,7 @@ const tableData = [
       </template>
   </el-input>
   <el-button>刷新</el-button>
-    </el-row>
+</span>
 <el-table :data="tableData" style="width: 100%">
   <el-table-column prop="number" label="#" />
   <el-table-column prop="name" label="题目" />

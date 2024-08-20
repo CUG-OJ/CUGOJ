@@ -10,7 +10,7 @@ const routes = [
         { path: 'problem', component: ()=>import('@/components/adminProblem.vue')},
     ]},
     { path: '/contests', component: ()=>import('@/components/contest.vue')},
-    { path: '/group', component: ()=>import('@/components/group.vue')},
+    { path: '/class', component: ()=>import('@/components/class.vue')},
     { path: '/more', component: ()=>import('@/components/more.vue')},
     { path: '/login', component: ()=>import('@/components/login.vue')},
     { path: '/register', component: ()=>import('@/components/register.vue')},

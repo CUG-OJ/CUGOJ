@@ -22,14 +22,14 @@ const testData=[
 </script>
 
 <template>
- <div style="margin-bottom: 1%">
+ <div style="margin-bottom: 20px">
    <el-cascader
        placeholder="赛制"
        :options="options"
         v-model="value"
        hoverThreshold="500"
        @change="handleChange"
-       style="margin-right: 2%"
+       style="margin-right: 20px"
    />
     <el-input
       v-model="test1"
@@ -40,10 +40,9 @@ const testData=[
         <el-button :icon="Search" />
       </template>
     </el-input>
-   <el-button style="float: right">创建比赛</el-button>
   </div>
   <li v-for="item in testData" :key="item.name" class="list-item" style="list-style: none;">
-    <el-card shadow="hover" style="margin-top: 0.8%">
+    <el-card shadow="never" style="margin-top: 5px">
       <div style="float: left">
         <el-avatar :size="80" :src="circleUrl" style="float: left;margin-right: 30px" />
       </div>
