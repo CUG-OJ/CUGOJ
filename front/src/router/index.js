@@ -8,6 +8,9 @@ const routes = [
         { path: 'user', component: ()=>import('@/components/adminUser.vue')},
         { path: 'dashboard', component: ()=>import('@/components/adminDashboard.vue')},
         { path: 'problem', component: ()=>import('@/components/adminProblem.vue')},
+        { path: 'config', component: ()=>import('@/components/adminConfig.vue')},
+        { path: 'contest', component: ()=>import('@/components/adminContest.vue')},
+        { path: 'judgeServer', component: ()=>import('@/components/adminJudgeServer.vue')},
     ]},
     { path: '/contests', component: ()=>import('@/components/contest.vue')},
     { path: '/class', component: ()=>import('@/components/class.vue')},
@@ -35,12 +38,12 @@ const router = createRouter(
     routes,
   }
 )
-router.beforeEach((to, from, next) => {
-    const token = localStorage.getItem('token')
-    if (to.path === '/login' || to.path === '/register') {
-        token?next('/'):next()
-    }else{
-        next()
-    }
-})
+// router.beforeEach((to, from, next) => {
+//     const token = localStorage.getItem('token')
+//     if (to.path === '/login' || to.path === '/register') {
+//         token?next('/'):next()
+//     }else{
+//         next()
+//     }
+// })
 export default router

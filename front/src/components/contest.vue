@@ -9,7 +9,6 @@ const options = [
 ]
 let test = ''
 const testData=[
-  {startTime:'2021-10-01',name:'第一届篮球杯程序设计竞赛-中国地质大学（左岭）',type:'ICPC',endTime:"2021-10-02",status:'未开始'},
   {startTime:'2021-10-01',name:'第二届',type:'ICPC',endTime:"2021-10-02",status:'未开始'},
   {startTime:'2021-10-01',name:'第三届',type:'OI',endTime:"2021-10-02",status:'未开始'},
   {startTime:'2021-10-01',name:'第四届',type:'IOI',endTime:"2021-10-02",status:'未开始'},

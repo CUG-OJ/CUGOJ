@@ -5,7 +5,7 @@
     router
     style="padding-left: 1%;padding-right: 1%;"
   >
-    <el-text style="font-size: xx-large;margin-right: 30px">CUGOJ</el-text>
+    <el-text style="font-size: xx-large;margin-right: 30px">在线判题</el-text>
     <el-menu-item class="menu-item" index="/" style="font-size: large"><el-icon><HomeFilled /></el-icon>主页</el-menu-item>
     <el-menu-item class="menu-item" index="/problem" style="font-size: large"><el-icon><Grid /></el-icon>题目</el-menu-item>
     <el-menu-item class="menu-item" index="/contests" style="font-size: large"><el-icon><TrophyBase /></el-icon>竞赛</el-menu-item>
@@ -13,7 +13,7 @@
     <el-menu-item class="menu-item" index="/rank" style="font-size: large"><el-icon><Histogram /></el-icon>排名</el-menu-item>
     <el-menu-item class="menu-item" index="/class" style="font-size: large"><el-icon><UserFilled /></el-icon>班级</el-menu-item>
     <el-menu-item class="menu-item" index="/more" style="font-size: large"><el-icon><MoreFilled /></el-icon>更多</el-menu-item>
-    <el-menu-item class="menu-item" index="/problemItem" style="font-size: large"><el-icon><MoreFilled /></el-icon>子题目</el-menu-item>
+    <el-menu-item class="menu-item" index="/problemItem" style="font-size: large"><el-icon><MoreFilled /></el-icon>判题机</el-menu-item>
 <!--    <el-menu-item class="menu-item" index="/test" style="font-size: large">题目</el-menu-item>-->
     <el-menu-item class="menu-item" index="/admin" v-show="isAdmin()" style="font-size: large">管理中心</el-menu-item>
     <div class="flex-grow" />

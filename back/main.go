@@ -3,17 +3,16 @@ package main
 import (
 	"crypto/tls"
 	"database/sql"
-	"fmt"
-	"gopkg.in/gomail.v2"
-	"math/rand"
-	"net"
-	"net/http"
-	"strconv"
-	"time"
-
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golang-jwt/jwt/v5"
+	"gopkg.in/gomail.v2"
+	"math/rand"
+	"net/http"
+	"os"
+	"os/exec"
+	"strconv"
+	"time"
 )
 
 func Cors() gin.HandlerFunc {
@@ -59,7 +58,6 @@ func login(c *gin.Context) {
 			expireTime := nowTime.Add(24 * time.Hour)
 			token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 				"username": username,
-				"password": password,
 				"exp":      expireTime.Unix(),
 			})
 			tokenString, err := token.SignedString([]byte("secret"))
@@ -136,7 +134,6 @@ func register(c *gin.Context) {
 	expireTime := nowTime.Add(24 * time.Hour)
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"username": username,
-		"password": password,
 		"mails":    email,
 		"exp":      expireTime.Unix(),
 	})
@@ -230,38 +227,45 @@ func mail(c *gin.Context) {
 	}(db)
 }
 
-func test() {
-	// 获取本地所有网络接口
-	interfaces, err := net.Interfaces()
-	if err != nil {
-		fmt.Println("Error getting network interfaces:", err)
-		return
+func submit(c *gin.Context) {
+	code := c.PostForm("code")
+	//将代码写入/home/code的main.cpp文件中
+	os.WriteFile("/home/code/main.cpp", []byte(code), 0644)
+	//指令是：docker run -i --rm -v /home/code/main.cpp:/app/main.cpp cpprun bash -c "g++ /app/main.cpp -o /app/main && ./main" < /home/code/input.txt > /home/code/output.txt
+	cmd := "docker run -i --rm -v /home/code/main.cpp:/app/main.cpp cpprun bash -c \"g++ /app/main.cpp -o /app/main && ./main\" < /home/code/input.txt > /home/code/myoutput.txt "
+	//执行指令
+	exec.Command("bash", "-c", cmd).Run()
+	//对比output.txt和myoutput.txt是否一致
+	cmd3 := exec.Command("diff", "/home/code/output.txt", "/home/code/myoutput.txt")
+	output2, _ := cmd3.Output()
+	if string(output2) == "" {
+		c.JSON(200, gin.H{
+			"message": "Accepted",
+		})
+	} else {
+		c.JSON(200, gin.H{
+			"message": "Wrong Answer",
+		})
 	}
-	// 遍历每个接口
-	for _, i := range interfaces {
-		// 获取接口的所有地址
-		addrs, err := i.Addrs()
-		if err != nil {
-			fmt.Println("Error getting addresses for interface:", i.Name, " :", err)
-			continue
-		}
+}
 
-		// 遍历每个地址
-		for _, addr := range addrs {
-			var ip net.IP
-			switch v := addr.(type) {
-			case *net.IPNet:
-				ip = v.IP
-			case *net.IPAddr:
-				ip = v.IP
-			}
+func test(c *gin.Context) {
+	code := c.PostForm("code")
+	//将代码写入/home/code的main.cpp文件中
+	os.WriteFile("/home/code/main.cpp", []byte(code), 0644)
+	cmd := "docker run -i --rm -v /home/code/main.cpp:/app/main.cpp cpprun bash -c \"g++ /app/main.cpp -o /app/main && ./main\" < /home/code/input.txt > /home/code/myoutput.txt "
+	//执行指令
+	exec.Command("bash", "-c", cmd).Run()
+	//返回输出内容JSON
+	output, _ := exec.Command("cat", "/home/code/myoutput.txt").Output()
+	c.JSON(200, gin.H{
+		"message": string(output),
+	})
+}
 
-			// 确保是IPv4地址且不是本地地址
-			if ip.To4() != nil && !ip.IsLoopback() {
-				fmt.Println("Interface:", i.Name, " IP Address:", ip.String())
-			}
-		}
-	}
+func new(c *gin.Context) {
+	//校验token
+
 }
 
 func main() {
@@ -272,6 +276,8 @@ func main() {
 	r.POST("/api/register", register)
 	r.POST("/api/login", login)
 	r.POST("/api/mail", mail)
+	r.POST("/api/test", test)
+	r.POST("/api/submit", submit)
 	//输出当前的IP地址
 	err := r.Run("172.19.231.116:8080")
 	if err != nil {

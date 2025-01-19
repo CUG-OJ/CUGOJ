@@ -5,7 +5,7 @@ import Header from "@/components/header.vue";
 <template>
     <el-container class="common-layout">
       <el-header style="user-select: none;padding: 0"><Header/></el-header>
-      <el-main style="padding: unset">
+      <el-main>
           <router-view></router-view>
       </el-main>
     </el-container>
@@ -14,7 +14,7 @@ import Header from "@/components/header.vue";
 <style scoped>
 .common-layout {
   position: absolute;
-  top: 0;
+  top: 0;                
   left: 0;
   width: 100%;
   height: 100%;

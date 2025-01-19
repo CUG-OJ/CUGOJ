@@ -40,6 +40,13 @@ function login(){
     <br/>
     <el-button @click="login" style="width: 250px">登录</el-button>
   </el-card>
+  <el-card shadow="none" style="width:300px;height:300px;float:right;margin: 150px 150px auto auto">
+    <el-text style="font-size: large;margin-left: 100px">提示</el-text>
+    <br/><br/>
+    <el-text>管理员账号：admin</el-text>
+    <br/><br/>
+    <el-text>密码：123456</el-text>
+  </el-card>
 </template>
 
 <style scoped>

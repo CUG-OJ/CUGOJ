@@ -1,8 +1,8 @@
 <script setup>
 let notes=[
   {
-    title: '使用方法',
-    content: '正常注册使用即可:heart:'
+    title: '普通公告',
+    content: '普通公告的内容:smiley:'
   },
 ]
 const tableData = [
